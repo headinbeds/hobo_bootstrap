@@ -101,10 +101,8 @@ This is a simple tag - just look at the source if you need to know more detail.
   -->
 <def tag="account-nav" attrs="include-search">
   <do with="&current_user">
-    <do if="&include_search" param="search">
-      <live-search param if="&defined_route? :site_search"/>
-    </do>
     <ul class="navigation account-nav nav navbar-nav navbar-right" param>
+      <li if="&include_search" param="search"><live-search param if="&defined_route? :site_search"/></li>
       <li if="&Rails.env.development?" param="dev-user-changer"><dev-user-changer/></li>
       <if test="&logged_in?">
         <li class='nav-item' param="logged-in-as"><a to="&current_user"><t key="hobo.actions.logged_in_as" name="&name">Logged in as <name/></t></a></li>
