@@ -38,7 +38,7 @@ Then in your pages you can call the tag like this
 
    -->
 <def tag="navigation" attrs="current,include-search">
-  <ul class="navigation" merge-attrs>
+  <ul class="nav navbar-nav" merge-attrs>
     <set-scoped current-navigation="&current">
       <do param="default"/>
       <if test="&include_search">
@@ -100,10 +100,11 @@ This is a simple tag - just look at the source if you need to know more detail.
 
   -->
 <def tag="account-nav" attrs="include-search">
-  <div class="nav-collapse collapse">
   <do with="&current_user">
-    <ul class="navigation account-nav nav pull-right" param>
-      <li if="&include_search" param="search"><live-search param if="&defined_route? :site_search"/></li>
+    <do if="&include_search" param="search">
+      <live-search param if="&defined_route? :site_search"/>
+    </do>
+    <ul class="navigation account-nav nav navbar-nav navbar-right" param>
       <li if="&Rails.env.development?" param="dev-user-changer"><dev-user-changer/></li>
       <if test="&logged_in?">
         <li class='nav-item' param="logged-in-as"><a to="&current_user"><t key="hobo.actions.logged_in_as" name="&name">Logged in as <name/></t></a></li>
@@ -116,5 +117,4 @@ This is a simple tag - just look at the source if you need to know more detail.
       </else>
     </ul>
   </do>
-  </div>
 </def>
