@@ -33,6 +33,11 @@
 
 
 
+nav.navbar-default {
+  input, select {
+  margin-top: 5px;
+ }
+}
 
 /* Page heading */
 .bootstrap-content{
@@ -44,7 +49,7 @@ h2.heading{
 }
 .index-page h2.heading{
   margin-bottom:0px;
-  line-height:26px;
+  line-height:2em;
 }
 
 /*  hidden-fields */
@@ -101,10 +106,10 @@ ul.collection { margin-left: 0;}
 
 /* Icon URLs */
 [class^="icon-"], [class*=" icon-"] {
-  background-image: image-url("glyphicons-halflings.png");
+  /*background-image: image-url("glyphicons-halflings.png");*/
 }
 .icon-white {
-    background-image: image-url("glyphicons-halflings-white.png");
+    /*background-image: image-url("glyphicons-halflings-white.png");*/
 }
 
 

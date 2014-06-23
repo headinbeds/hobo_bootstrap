@@ -71,14 +71,14 @@ Make your choice global with:
         </nav>
         <div class="container" param="nav-container" if="&nav_location=='sub'">
           <div class="subnav" param="subnav">
-            <main-nav class="nav nav-pills" current="&title" include-search param/>
+            <main-nav class="nav nav-pills" remove-class="navbar-nav" current="&title" include-search param/>
           </div>
         </div>
         <%
           if all_parameters[:aside]
             attributes[:content_size] ||= "9"
             attributes[:aside_size] ||= (12 - attributes[:content_size].to_i).to_s
-            aside_span = "span" + attributes[:aside_size]
+            aside_span = "col-md-" + attributes[:aside_size]
             aside_location ||= 'right'
           else
             attributes[:content_size] = "12" unless attributes[:content_size]

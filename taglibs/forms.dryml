@@ -33,13 +33,13 @@
 - columns: # of columns.  Default is 1.
 - input-attrs: A ruby hash containing attributes to be merged onto each view.   For example
 
-`<bootstrap-fields fields="foo,bar" input-attrs="&{:class => 'span9'}"/>`
+`<bootstrap-fields fields="foo,bar" input-attrs="&{:class => 'col-md-6'}"/>`
 
 is equivalent to:
 
     <bootstrap-fields fields="foo,bar">
-      <foo-tag: class="span9"/>
-      <bar-tag: class="span9"/>
+      <foo-tag: class="col-md-6"/>
+      <bar-tag: class="col-md-6"/>
     </bootstrap-fields>
 
 %>
@@ -58,7 +58,7 @@ is equivalent to:
        error_class = this_parent.errors[this_field].empty? ? "" : "error"
     -%>
       <div
-         class="control-group #{'required' if required.include?(scope.field_name)} #{error_class}" 
+         class="form-group #{'required' if required.include?(scope.field_name)} #{error_class}" 
          unless="&(tag == 'input' && no_edit == 'skip' && !can_edit?) || ((tag == 'view' || tag == 'uneditable-input') && no_blanks && this.blank?)"
          param="#{field_method}-field">
 
@@ -68,7 +68,7 @@ is equivalent to:
 
         <div class="controls">
           <do param="#{field_method}-view">
-            <do param="view"><call-tag tag="&tag" param="#{field_method}-tag" merge-attrs="&input_attrs"/></do>
+            <do param="view"><call-tag tag="&tag" class="form-control" param="#{field_method}-tag" merge-attrs="&input_attrs"/></do>
           </do>
           <p param="#{field_method}-help" class="help-block" if='&tag.to_sym == :input && (!this_field_help.blank? || parameters.include?("#{field_method}_help".to_sym))'>
             <%= this_field_help %>
@@ -83,7 +83,7 @@ is equivalent to:
 
 <!-- nodoc. -->
 <extend tag="form">
-  <old-form: class="form-horizontal" merge>
+  <old-form: merge>
     <actions: class="form-actions"/>
   </old-form:>
 </extend>
@@ -112,7 +112,7 @@ Supports all attributes supported by `<with-fields>` plus:
   row_classes += " columns" if columns > 1
   %><div class="#{row_classes}" merge-attrs> <%
   field_names_groups.each do |field_names_group|
-    %> <div class="span#{span_size}"> <%
+    %> <div class="col-md-#{span_size}"> <%
     field_names_group.each do |field|
       %><set-scoped field-name="&field"><%
       if field == "this"
@@ -192,7 +192,7 @@ Supports all attributes supported by `<with-fields>` plus:
 <!-- This tag creates a form in just one line using bootstrap's inline-form -->
 <def tag="one-line-form" attrs="fields">
   <div class="row">
-    <div class="span12">
+    <div class="col-md-12">
       <form class="inline-form well" remove-class="form-horizontal" merge>
         <field-list: replace>
           <one-line-field-list param="field-list" fields="&fields"/>
